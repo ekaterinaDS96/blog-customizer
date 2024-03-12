@@ -47,12 +47,10 @@ export const ArticleParamsForm = ({isOpen, applyNewStyles, onClick}: ArticlePara
 		applyNewStyles(defaultState);
 	}
 
-	function handleApplyButtonClick() {
-		applyNewStyles(state);
-	}
-
 	function onSubmit(e: React.FormEvent) {
 		e.preventDefault();
+		console.log(e);
+		applyNewStyles(state);
 	}
 
 	function handleFontFamilyChange(selected: OptionType) {
@@ -96,7 +94,7 @@ export const ArticleParamsForm = ({isOpen, applyNewStyles, onClick}: ArticlePara
 						onChange={handleContentWidthChange} title='Ширина контента' />
 					<div className={styles.bottomContainer}>
 						<Button title='Сбросить' type='reset' onClick={handleResetButtonClick} />
-						<Button title='Применить' type='submit' onClick={handleApplyButtonClick} />
+						<Button title='Применить' type='submit' />
 					</div>
 				</form>
 			</aside>
