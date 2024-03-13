@@ -42,15 +42,15 @@ export const ArticleParamsForm = ({isOpen, applyNewStyles, onClick}: ArticlePara
 		[styles.container_open]: isOpen,
 	});
 
-	function handleResetButtonClick() {
-		setState(defaultState);
-		applyNewStyles(defaultState);
-	}
-
 	function onSubmit(e: React.FormEvent) {
 		e.preventDefault();
-		console.log(e);
 		applyNewStyles(state);
+	}
+
+	function onReset(e:React.FormEvent) {
+		e.preventDefault();
+		setState(defaultState);
+		applyNewStyles(defaultState);
 	}
 
 	function handleFontFamilyChange(selected: OptionType) {
@@ -78,7 +78,7 @@ export const ArticleParamsForm = ({isOpen, applyNewStyles, onClick}: ArticlePara
 		<>
 			<ArrowButton onClick={onClick} isOpen={isOpen}/>
 			<aside className={articleStyle}>
-				<form className={styles.form} onSubmit={onSubmit}>
+				<form className={styles.form} onSubmit={onSubmit} onReset={onReset}>
 					<Text as='h2' size={31} weight={800} align='left' family='open-sans'>
 						Задайте параметры
 					</Text>
@@ -93,7 +93,7 @@ export const ArticleParamsForm = ({isOpen, applyNewStyles, onClick}: ArticlePara
 					<Select options={contentWidthArr} selected={state.contentWidth}
 						onChange={handleContentWidthChange} title='Ширина контента' />
 					<div className={styles.bottomContainer}>
-						<Button title='Сбросить' type='reset' onClick={handleResetButtonClick} />
+						<Button title='Сбросить' type='reset' />
 						<Button title='Применить' type='submit' />
 					</div>
 				</form>
